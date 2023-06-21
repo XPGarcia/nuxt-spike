@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+@layer base {
+    @font-face {
+        font-family: "MarkPro";
+        font-weight: 400;
+        src: url("/fonts/MarkPro.otf");
+    }
+    @font-face {
+        font-family: "MarkPro";
+        font-weight: 600;
+        src: url("/fonts/MarkPro-Bold.otf");
+    }
+    @font-face {
+        font-family: "MarkPro";
+        font-weight: 700;
+        src: url("/fonts/MarkPro-Black.otf");
+    }
+}
