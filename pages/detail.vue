@@ -17,6 +17,7 @@ const handleSubmit = async () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Authorization": env.apiKey,
       },
       body: {
         message: formData.name,

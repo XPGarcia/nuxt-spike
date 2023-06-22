@@ -7,7 +7,11 @@ const page = ref<Page<Car>>();
 const errorMessage = ref<string>();
 
 try {
-  const { data, error } = await useFetch<Page<Car>>(`${env.baseUrl}/api/cars`);
+  const { data, error } = await useFetch<Page<Car>>(`${env.baseUrl}/api/cars`, {
+    headers: {
+      "X-Authorization": env.apiKey,
+    },
+  });
   if (error) {
     errorMessage.value = error.value?.message;
   }
