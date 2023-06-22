@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
-import { env } from "~/config/env";
+
+const config = useRuntimeConfig();
 
 const formData = reactive({
   name: "",
@@ -13,17 +14,20 @@ const handleSubmit = async () => {
   console.log(formData);
 
   try {
-    const response: any = await $fetch(`${env.baseUrl}/api/cars/test`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Authorization": env.apiKey,
-      },
-      body: {
-        message: formData.name,
-        from: formData.lastname,
-      },
-    });
+    const response: any = await $fetch(
+      `${config.public.apiBaseURL}/cars/test`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Authorization": config.public.apiKey,
+        },
+        body: {
+          message: formData.name,
+          from: formData.lastname,
+        },
+      }
+    );
 
     message.value = response.data.response;
   } catch (e) {

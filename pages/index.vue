@@ -1,17 +1,21 @@
 <script setup lang="ts">
 import { Page, Car } from "~/interfaces";
-import { env } from "@/config/env";
 
 const page = ref<Page<Car>>();
 
 const errorMessage = ref<string>();
 
+const config = useRuntimeConfig();
+
 try {
-  const { data, error } = await useFetch<Page<Car>>(`${env.baseUrl}/api/cars`, {
-    headers: {
-      "X-Authorization": env.apiKey,
-    },
-  });
+  const { data, error } = await useFetch<Page<Car>>(
+    `${config.public.apiBaseURL}/cars`,
+    {
+      headers: {
+        "X-Authorization": config.public.apiKey,
+      },
+    }
+  );
   if (error) {
     errorMessage.value = error.value?.message;
   }
